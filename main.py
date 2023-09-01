@@ -12,7 +12,7 @@ interest_rate = 3
 loan_installment = 200
 
 inflation_list = []
-remain_credit_value_list = []
+remain_credit_value_list = [initial_credit_value]
 
 with open("Oprocentowanie1.csv", "r") as file:
     zmienna = csv.reader(file)
@@ -23,22 +23,27 @@ with open("Oprocentowanie1.csv", "r") as file:
 # print(zmienna)  # jest to obiekt odczytanego pliku file
 
 
-# for element in range(24):
-#     remain_credit_value_list[element] = (1 + ((inflation_list[element] + interest_rate) / (initial_credit_value / 10)))\
-#                                         * initial_credit_value - loan_installment
-#
-# remain_credit_value_1 = (1 + ((inflation_list[0] + interest_rate) / (initial_credit_value / 10))) * initial_credit_value - \
-#                         loan_installment
-#
-# print(f"Twoja pozostała kwota kredytu to {remain_credit_value_1}, to {initial_credit_value - remain_credit_value_1} "
+# Pierwszy miesiąc
+# remain_credit_value_list.append((1 + ((inflation_list[0] + interest_rate) / (initial_credit_value / 10))) * remain_credit_value_list[0] - \
+#                         loan_installment)
+# print(f"Twoja pozostała kwota kredytu to {remain_credit_value_list[1]}, to {remain_credit_value_list[0] - remain_credit_value_list[1]} "
 #       f"mniej niż w poprzednim miesiącu.")
-#
-#
+
 # remain_credit_value_2 = (1 + ((inflation_list[1] + interest_rate) / (initial_credit_value / 10))) * remain_credit_value_1 - \
 #                         loan_installment
-#
-# print(f"Twoja pozostała kwota kredytu to {remain_credit_value_2}, to {remain_credit_value_1 - remain_credit_value_2} "
-#       f"mniej niż w poprzednim miesiącu.")
+
+
+# Następne miesiące
+for element in range(24):
+    remain_credit_value_list.append((1 + ((inflation_list[element] + interest_rate) / (initial_credit_value / 10)))\
+                                        * remain_credit_value_list[element] - loan_installment)
+    print(f"Twoja pozostała kwota kredytu to {remain_credit_value_list[element + 1]}, to "
+      f"{remain_credit_value_list[element] - remain_credit_value_list[element + 1]} mniej niż w poprzednim miesiącu.")
+
+
+
+
+
 
 
 

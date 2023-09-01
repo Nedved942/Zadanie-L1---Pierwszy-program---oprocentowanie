@@ -2,9 +2,9 @@ import csv
 
 print("\n*** Pierwszy program - oprocentowanie ***\n")
 
-# initial_credit_value = input("Podaj początkową wartość kredytu: ")
-# interest_rate = input("Podaj oprocentowanie kredytu: ")
-# loan_installment = input("Podaj kwotę raty kredytu: ")
+# initial_credit_value = float(input("Podaj początkową wartość kredytu: "))
+# interest_rate = float(input("Podaj oprocentowanie kredytu: "))
+# loan_installment = float(input("Podaj kwotę raty kredytu: "))
 
 # Przykładowe wartości zadania
 initial_credit_value = 12000
@@ -23,28 +23,14 @@ with open("Oprocentowanie1.csv", "r") as file:
 # print(zmienna)  # jest to obiekt odczytanego pliku file
 
 
-# Pierwszy miesiąc
-# remain_credit_value_list.append((1 + ((inflation_list[0] + interest_rate) / (initial_credit_value / 10))) * remain_credit_value_list[0] - \
-#                         loan_installment)
-# print(f"Twoja pozostała kwota kredytu to {remain_credit_value_list[1]}, to {remain_credit_value_list[0] - remain_credit_value_list[1]} "
-#       f"mniej niż w poprzednim miesiącu.")
-
-# remain_credit_value_2 = (1 + ((inflation_list[1] + interest_rate) / (initial_credit_value / 10))) * remain_credit_value_1 - \
-#                         loan_installment
-
-
-# Następne miesiące
 for element in range(24):
-    remain_credit_value_list.append((1 + ((inflation_list[element] + interest_rate) / (initial_credit_value / 10)))\
-                                        * remain_credit_value_list[element] - loan_installment)
-    print(f"Twoja pozostała kwota kredytu to {remain_credit_value_list[element + 1]}, to "
-      f"{remain_credit_value_list[element] - remain_credit_value_list[element + 1]} mniej niż w poprzednim miesiącu.")
+    remain_credit_value_list.append(
+        (1 + ((inflation_list[element] + interest_rate) /
+              (initial_credit_value / 10))) *
+        remain_credit_value_list[element] - loan_installment
+    )
 
-
-
-
-
-
-
-
-
+    print(f"Twoja pozostała kwota kredytu to"
+          f"{round(remain_credit_value_list[element + 1], 2)}, to"
+          f"{round(remain_credit_value_list[element] - remain_credit_value_list[element + 1], 2)}"
+          f"mniej niż w poprzednim miesiącu.")
